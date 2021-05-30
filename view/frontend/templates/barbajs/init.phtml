@@ -5,7 +5,20 @@
  */
 ?>
 <script>
-    require(['barbajs'], function(barba) {
-        barba.init({});
+    require(['jquery','barbajs'], function($, barba) {
+        barba.init({
+            cacheIgnore: ['/checkout/cart/'],
+            transitions: [{
+                name: 'default-transition',
+                leave() {
+                    $("html, body").scrollTop(0)
+                },
+                enter(data) {
+                    setTimeout(function() {
+                        $(data.next.container).trigger('contentUpdated');
+                    }, 1000)
+                }
+            }]
+        });
     })
 </script>
