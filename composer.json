@@ -1,17 +1,23 @@
 {
     "name": "ronangr1/module-barbagento",
     "description": "Improve the performance of your Magento 2 store using Barbajs",
+    "keywords": [
+        "barbajs",
+        "magento",
+        "magento2",
+        "module"
+    ],
     "type": "magento2-module",
-    "license": "GPL-3.0",
-    "version": "1.0.0",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ronan Guérin",
             "email": "guerin.ronan@aol.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "magento/framework": "*"
+    },
     "autoload": {
         "files": [
           "registration.php"
