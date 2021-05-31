@@ -7,5 +7,9 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Ronangr1_Barbagento" />
+    <module name="Ronangr1_Barbagento">
+        <sequence>
+            <module name="Magento_Theme"/>
+        </sequence>
+    </module>
 </config>
