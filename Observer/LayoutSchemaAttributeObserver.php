@@ -3,6 +3,7 @@
  * Copyright © Ronan Guérin. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 namespace Ronangr1\Barbagento\Observer;
 
@@ -15,21 +16,13 @@ class LayoutSchemaAttributeObserver implements ObserverInterface
 {
     private Http $request;
 
-    /**
-     * LayoutSchemaAttributeObserver constructor.
-     * @param Http $request
-     */
     public function __construct(
         Http $request
-    )
-    {
+    ) {
         $this->request = $request;
     }
 
-    /**
-     * @param Observer $observer
-     */
-    public function execute(Observer $observer)
+    public function execute(Observer $observer): void
     {
         /** @var Layout $layout */
         $layout = $observer->getEvent()->getLayout();
