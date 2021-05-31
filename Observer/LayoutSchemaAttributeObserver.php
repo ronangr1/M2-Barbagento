@@ -3,28 +3,35 @@
  * Copyright © Ronan Guérin. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Ronangr1\Barbagento\Observer;
 
+use Magento\Framework\App\Request\Http;
+use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\View\Layout;
 
 class LayoutSchemaAttributeObserver implements ObserverInterface
 {
-    private \Magento\Framework\App\Request\Http $request;
+    private Http $request;
 
     /**
      * LayoutSchemaAttributeObserver constructor.
-     * @param \Magento\Framework\App\Request\Http $request
+     * @param Http $request
      */
     public function __construct(
-        \Magento\Framework\App\Request\Http $request
+        Http $request
     )
     {
         $this->request = $request;
     }
 
-    public function execute(\Magento\Framework\Event\Observer $observer)
+    /**
+     * @param Observer $observer
+     */
+    public function execute(Observer $observer)
     {
-        /** @var \Magento\Framework\View\Layout $layout */
+        /** @var Layout $layout */
         $layout = $observer->getEvent()->getLayout();
         $elementName = $observer->getEvent()->getElementName();
         if ($layout->isContainer($elementName) && $elementName === 'main.content') {

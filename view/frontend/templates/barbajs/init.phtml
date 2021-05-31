@@ -7,16 +7,16 @@
 <script>
     require(['jquery','barbajs'], function($, barba) {
         barba.init({
-            cacheIgnore: ['/checkout/cart/'],
+            timeout: 10000,
             transitions: [{
                 name: 'default-transition',
                 leave() {
+                    console.log("Leave...")
                     $("html, body").scrollTop(0)
                 },
                 enter(data) {
-                    setTimeout(function() {
-                        $(data.next.container).trigger('contentUpdated');
-                    }, 1000)
+                    console.log("Enter...")
+                    $(data.next.container).trigger('contentUpdated');
                 }
             }]
         });
