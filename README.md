@@ -1,5 +1,7 @@
 # Barbagento beta version
 
+*This is a work in progress and it is not yet functional. Do not use it for production systems.
+
 ## What's BarbaJs?
 
 **Barba.js** is a small and easy-to-use library that helps you create fluid and smooth transitions between your website's pages.
