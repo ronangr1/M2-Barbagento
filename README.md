@@ -5,7 +5,7 @@
 [![Packagist](https://img.shields.io/packagist/dt/ronangr1/module-barbagento.svg?style=flat-square)](https://packagist.org/packages/ronangr1/module-barbagento/stats)
 [![Packagist](https://img.shields.io/packagist/dm/ronangr1/module-barbagento.svg?style=flat-square)](https://packagist.org/packages/ronangr1/module-barbagento/stats)
 
-This module allows you to add BarbaJs 
+This module allows you to add BarbaJs to your Magento 2 application
 
 - [Setup](#setup)
     - [Composer installation](#composer-installation)
