@@ -7,18 +7,23 @@ define([
     'barbajs',
     'Magento_Customer/js/customer-data',
     'mage/cookies',
-    'mage/apply/main'
-], function($, barba, customerData, cookies, mage) {
+    'uiRegistry',
+    'mage/mage'
+], function ($, barba, customerData, cookies, registry) {
     'use strict';
 
     return {
         config: {
             excludedPages: ['/checkout', '/cart', '/customer/account'],
-            debug: false
+            debug: true
         },
 
         init: function () {
-            this.preventOnExcludedPages();
+            if (this.isPageExcluded(window.location.pathname)) {
+                if (this.config.debug) console.log('Barba.js: Initialisation prevented on excluded page.');
+                return;
+            }
+            this.preventOnExcludedLinks();
 
             if (barba.prefetch) {
                 barba.use(barba.prefetch);
@@ -29,6 +34,7 @@ define([
                 transitions: [{
                     name: 'default-transition',
                     leave: (data) => {
+                        this.destroyMagentoComponents(data.current.container);
                         return $(data.current.container).animate({opacity: 0}, 250).promise();
                     },
                     enter: (data) => {
@@ -36,27 +42,55 @@ define([
                         $(data.next.container).css({opacity: 0, visibility: 'hidden'});
                     },
                     after: (data) => {
-                        this.updatePageSpecifics(data, mage);
+                        this.updatePageSpecifics(data);
                         $(data.next.container).css('visibility', 'visible').animate({opacity: 1}, 250);
                     }
                 }]
             });
 
-            $(document).on('contentUpdated', () => this.preventOnExcludedPages());
+            $(document).on('contentUpdated', () => this.preventOnExcludedLinks());
         },
 
-        updatePageSpecifics: function (data, mage) {
+        updatePageSpecifics: function (data) {
+            this.updateHead(data);
             this.updateBodyClass(data);
             this.updateFormKeys();
             this.reloadPrivateContent();
-            this.triggerMagentoInit(data.next.container, mage);
+        },
+
+        updateHead: function (data) {
+            const newPageRawHead = data.next.html.match(/<head[^>]*>([\s\S]*)<\/head>/i);
+            if (!newPageRawHead || !newPageRawHead[0]) return;
+
+            const newPageHead = document.createElement('head');
+            newPageHead.innerHTML = newPageRawHead[0];
+
+            document.title = newPageHead.querySelector('title')?.innerText || '';
+        },
+
+        destroyMagentoComponents: function (container) {
+            registry.get((component) => {
+                if (component.elems && component.elems().length > 0) {
+                    if ($.contains(container, component.elems()[0])) {
+                        component.destroy();
+                    }
+                }
+            });
+        },
+
+        isPageExcluded(path) {
+            return this.config.excludedPages.some(excludedPath => path.includes(excludedPath));
+        },
+
+        preventOnExcludedLinks: function () {
+            this.config.excludedPages.forEach(path => {
+                $(`a[href*="${path}"]`).attr('data-barba-prevent', 'all');
+            });
         },
 
         updateBodyClass: function (data) {
             const bodyClasses = data.next.html.match(/<body[^>]*class="([^"]*)"/);
-            if (bodyClasses && bodyClasses[1]) {
-                document.body.className = bodyClasses[1];
-            }
+            document.body.className = (bodyClasses && bodyClasses[1]) ? bodyClasses[1] : '';
         },
 
         updateFormKeys: function () {
@@ -68,20 +102,6 @@ define([
 
         reloadPrivateContent: function () {
             customerData.reload(['cart', 'customer'], false);
-        },
-
-        triggerMagentoInit: function (container, mage) {
-            $(container).trigger('contentUpdated');
-            if (mage && typeof mage.apply === 'function') {
-                mage.apply(container);
-            }
-        },
-
-        preventOnExcludedPages: function () {
-            this.config.excludedPages.forEach(path => {
-                const baseUrl = window.BASE_URL || '/';
-                $(`a[href*="${baseUrl.replace(/\/$/, '')}${path}"]`).attr('data-barba-prevent', 'all');
-            });
         }
     };
 });

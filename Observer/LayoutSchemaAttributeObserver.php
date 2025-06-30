@@ -10,17 +10,23 @@ namespace Ronangr1\Barbagento\Observer;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Ronangr1\Barbagento\Model\Config;
 
 class LayoutSchemaAttributeObserver implements ObserverInterface
 {
     public function __construct(
-        private readonly RequestInterface $request
+        private readonly RequestInterface $request,
+        private readonly Config $config,
     )
     {
     }
 
     public function execute(Observer $observer): void
     {
+        if (!$this->config->isActive()) {
+            return;
+        }
+
         if ('page.wrapper' !== $observer->getEvent()->getElementName()) {
             return;
         }
