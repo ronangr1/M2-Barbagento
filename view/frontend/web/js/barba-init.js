@@ -34,7 +34,6 @@ define([
                 transitions: [{
                     name: 'default-transition',
                     leave: (data) => {
-                        this.destroyMagentoComponents(data.current.container);
                         return $(data.current.container).animate({opacity: 0}, 250).promise();
                     },
                     enter: (data) => {
@@ -66,16 +65,6 @@ define([
             newPageHead.innerHTML = newPageRawHead[0];
 
             document.title = newPageHead.querySelector('title')?.innerText || '';
-        },
-
-        destroyMagentoComponents: function (container) {
-            registry.get((component) => {
-                if (component.elems && component.elems().length > 0) {
-                    if ($.contains(container, component.elems()[0])) {
-                        component.destroy();
-                    }
-                }
-            });
         },
 
         isPageExcluded(path) {
