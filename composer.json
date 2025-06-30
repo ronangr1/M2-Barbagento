@@ -23,7 +23,7 @@
           "registration.php"
         ],
         "psr-4": {
-            "Ronan Guérin\\Barbagento\\": ""
+            "Ronangr1\\Barbagento\\": ""
         }
     }
 }
