@@ -1,24 +1,11 @@
 <?php
 /**
- * Copyright © Ronan Guérin. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 ?>
 <script>
-    require(['jquery','barbajs'], function($, barba) {
-        barba.init({
-            timeout: 10000,
-            transitions: [{
-                name: 'default-transition',
-                leave() {
-                    console.log("Leave...")
-                    $("html, body").scrollTop(0)
-                },
-                enter(data) {
-                    console.log("Enter...")
-                    $(data.next.container).trigger('contentUpdated');
-                }
-            }]
-        });
+    require(['Ronangr1_Barbagento/js/barba-init'], function (MagentoBarba) {
+        MagentoBarba.init();
     })
 </script>

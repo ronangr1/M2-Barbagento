@@ -1,25 +1,54 @@
-# Barbagento beta version
+# Module for Magento 2
 
-*This is a work in progress and it is not yet functional. Do not use it for production systems.
+[![Latest Stable Version](https://img.shields.io/packagist/v/ronangr1/module-barbagento.svg?style=flat-square)](https://packagist.org/packages/ronangr1/module-barbagento)
+[![License: MIT](https://img.shields.io/github/license/ronangr1/m2-barbagento.svg?style=flat-square)](./LICENSE)
+[![Packagist](https://img.shields.io/packagist/dt/ronangr1/module-barbagento.svg?style=flat-square)](https://packagist.org/packages/ronangr1/module-barbagento/stats)
+[![Packagist](https://img.shields.io/packagist/dm/ronangr1/module-barbagento.svg?style=flat-square)](https://packagist.org/packages/ronangr1/module-barbagento/stats)
 
-## What's BarbaJs?
+This module allows you to add BarbaJs 
 
-**Barba.js** is a small and easy-to-use library that helps you create fluid and smooth transitions between your website's pages.
+- [Setup](#setup)
+    - [Composer installation](#composer-installation)
+    - [Setup the module](#setup-the-module)
+- [Documentation](#documentation)
+- [Support](#support)
+- [Authors](#authors)
+- [License](#license)
 
-It helps reduce the delay between your pages, minimize browser HTTP requests and enhance your user's web experience.
+## Setup
 
-For more information visit [BarbaJs GitHub Page](https://github.com/barbajs/barba)
+Magento 2 Open Source or Commerce edition is required.
 
-## Installation
+This module is compatible with the latest Magento version (2.4.8).
 
-1. Run `composer require ronangr1/module-barbagento`
-2. Run `bin/magento setup:upgrade`
-3. Run `bin/magento setup:di:compile`
-4. Run `bin/magento setup:static-content:deploy -f`
-4. Run `bin/magento cache:flush`
+### Installation
+
+```bash
+composer require ronangr1/module-barbagento
+```
+
+Then
+
+```bash
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+```
 
 ## Documentation
 
-- [Site](https://barba.js.org/)
-- [User guide](https://barba.js.org/docs/getstarted/intro/)
-- [API documentation](https://barba.js.org/api/)
+Coming soon
+
+## Support
+
+Raise a new [request](https://github.com/ronangr1/m2-barbagento/issues) to the issue tracker.
+
+## Authors
+
+- **ronangr1** - *Maintainer* - [![GitHub followers](https://img.shields.io/github/followers/ronangr1.svg?style=social)](https://github.com/ronangr1)
+- **Contributors** - *Contributor* - [![GitHub contributors](https://img.shields.io/github/contributors/ronangr1/m2-barbagento.svg?style=flat-square)](https://github.com/ronangr1/m2-barbagento/graphs/contributors)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) details.
+
+***That's all folks!***

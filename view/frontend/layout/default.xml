@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © Ronan Guérin. All rights reserved.
+ * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
 -->
@@ -12,6 +12,8 @@
     </body>
     <referenceContainer name="before.body.end">
         <block class="Magento\Framework\View\Element\Template" name="barbajs.init"
-               template="Ronangr1_Barbagento::barbajs/init.phtml" after="-"/>
+               template="Ronangr1_Barbagento::barbajs/init.phtml"
+               ifconfig="barbagento/general/is_active"
+               after="-"/>
     </referenceContainer>
 </page>
