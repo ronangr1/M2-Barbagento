@@ -7,22 +7,16 @@ define([
     'barbajs',
     'Magento_Customer/js/customer-data',
     'mage/cookies',
-    'uiRegistry',
-    'mage/mage'
-], function ($, barba, customerData, cookies, registry) {
+], function ($, barba, customerData) {
     'use strict';
 
     return {
         config: {
-            excludedPages: ['/checkout', '/cart', '/customer/account'],
+            excludedPages: ['/checkout', '/cart', '/customer'],
             debug: true
         },
 
         init: function () {
-            if (this.isPageExcluded(window.location.pathname)) {
-                if (this.config.debug) console.log('Barba.js: Initialisation prevented on excluded page.');
-                return;
-            }
             this.preventOnExcludedLinks();
 
             if (barba.prefetch) {
@@ -58,6 +52,7 @@ define([
         },
 
         updateHead: function (data) {
+            const head = document.head;
             const newPageRawHead = data.next.html.match(/<head[^>]*>([\s\S]*)<\/head>/i);
             if (!newPageRawHead || !newPageRawHead[0]) return;
 
@@ -65,10 +60,16 @@ define([
             newPageHead.innerHTML = newPageRawHead[0];
 
             document.title = newPageHead.querySelector('title')?.innerText || '';
-        },
 
-        isPageExcluded(path) {
-            return this.config.excludedPages.some(excludedPath => path.includes(excludedPath));
+            const currentStyles = Array.from(head.querySelectorAll('link[rel="stylesheet"], style'));
+            const newStyles = Array.from(newPageHead.querySelectorAll('link[rel="stylesheet"], style'));
+
+            const currentHrefs = new Set(currentStyles.map(s => s.href || s.innerText));
+            newStyles.forEach(newStyle => {
+                if (!currentHrefs.has(newStyle.href || newStyle.innerText)) {
+                    head.appendChild(newStyle.cloneNode(true));
+                }
+            });
         },
 
         preventOnExcludedLinks: function () {
