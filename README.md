@@ -7,7 +7,7 @@
 
 This module allows you to add BarbaJs to your Magento 2 application
 
-:warning: This module is still in work in progress :warning:
+:warning: This module is still under development :warning:
 
 - [Setup](#setup)
     - [Composer installation](#composer-installation)
