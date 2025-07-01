@@ -10,8 +10,6 @@ define([
 ], function ($, barba, customerData) {
     'use strict';
 
-    console.log("test")
-
     return {
         config: {
             excludedPages: ['/checkout', '/cart', '/customer/account'],
