@@ -10,10 +10,12 @@ define([
 ], function ($, barba, customerData) {
     'use strict';
 
+    console.log("test")
+
     return {
         config: {
-            excludedPages: ['/checkout', '/cart', '/customer'],
-            debug: true
+            excludedPages: ['/checkout', '/cart', '/customer/account'],
+            debug: false
         },
 
         init: function () {
@@ -49,6 +51,7 @@ define([
             this.updateBodyClass(data);
             this.updateFormKeys();
             this.reloadPrivateContent();
+            this.reapplyMagentoScripts(data);
         },
 
         updateHead: function (data) {
@@ -70,6 +73,12 @@ define([
                     head.appendChild(newStyle.cloneNode(true));
                 }
             });
+        },
+
+        reapplyMagentoScripts: function (data) {
+            const container = data.next.container;
+
+            $(container).trigger('contentUpdated');
         },
 
         preventOnExcludedLinks: function () {
