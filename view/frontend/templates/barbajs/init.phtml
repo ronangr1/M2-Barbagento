@@ -6,6 +6,14 @@
 ?>
 <script>
     require(['Ronangr1_Barbagento/js/barba-init'], function (MagentoBarba) {
-        MagentoBarba.init();
+        const config = {
+            timeout: 7000,
+            debug: false,
+            excludedPages: ['/checkout', '/cart', '/customer/account'],
+        }
+
+        console.log(config)
+
+        MagentoBarba.init(config);
     })
 </script>
