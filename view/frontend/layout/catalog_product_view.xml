@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Ronangr1. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="page.top">
+        <block name="barbagento.breadcrumbs"
+               class="Ronangr1\Barbagento\Block\Html\Breadcrumbs"
+               template="Magento_Theme::html/breadcrumbs.phtml"
+        />
+    </referenceContainer>
+    <referenceBlock name="breadcrumbs" remove="true"/>
+</page>
