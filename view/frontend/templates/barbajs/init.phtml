@@ -3,16 +3,22 @@
  * Copyright © Ronangr1. All rights reserved.
  * See COPYING.txt for license details.
  */
+
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Ronangr1\Barbagento\ViewModel\Init $viewModel
+ */
+
+$viewModel = $block->getData('view_model');
+$settings = $viewModel->getSettings();
 ?>
 <script>
     require(['Ronangr1_Barbagento/js/barba-init'], function (MagentoBarba) {
         const config = {
-            timeout: 7000,
-            debug: false,
-            excludedPages: ['/checkout', '/cart', '/customer/account'],
+            debug: <?= $settings['debug'] ?>,
+            timeout: <?= $settings['timeout'] ?>,
+            excludedPages: <?= $settings['excludedPages'] ?>,
         }
-
-        console.log(config)
 
         MagentoBarba.init(config);
     })

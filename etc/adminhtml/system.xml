@@ -23,6 +23,23 @@
                     <config_path>barbagento/general/is_active</config_path>
                 </field>
             </group>
+            <group id="settings" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Settings</label>
+                <field id="debug" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>barbagento/settings/debug</config_path>
+                </field>
+                <field id="timeout" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Timeout</label>
+                    <config_path>barbagento/settings/timeout</config_path>
+                </field>
+                <field id="excluded_pages" translate="textarea" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Excluded Pages</label>
+                    <config_path>barbagento/settings/excluded_page</config_path>
+                    <comment>Separated by commas. Eg: checkout, cart, customer.</comment>
+                </field>
+            </group>
         </section>
     </system>
 </config>

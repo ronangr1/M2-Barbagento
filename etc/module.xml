@@ -9,6 +9,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Ronangr1_Barbagento">
         <sequence>
+            <module name="Magento_Catalog"/>
             <module name="Magento_Theme"/>
         </sequence>
     </module>

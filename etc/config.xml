@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Ronangr1. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <barbagento>
+            <general>
+                <is_active>1</is_active>
+            </general>
+            <settings>
+                <debug>0</debug>
+                <timeout>7000</timeout>
+                <excluded_pages><![CDATA[checkout, cart, customer/account]]></excluded_pages>
+            </settings>
+        </barbagento>
+    </default>
+</config>
